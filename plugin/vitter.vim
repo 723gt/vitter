@@ -1,5 +1,5 @@
 command -nargs=* Gc call GitCheckout(<f-args>)
-command Gb call GitBranchs()
+command -nargs=* Gb call GitBranchs(<f-args>)
 command -nargs=* Gl call GitLog(<f-args>)
 command -nargs=* Gd call GitDiff(<f-args>)
 
@@ -19,9 +19,16 @@ function GitCheckout(branch)
   echo log
 endfunction
 
-function GitBranchs()
-  let branch = system("git branch")
-  echo branch
+function GitBranchs(...)
+  if (a:0 == 0)
+    let branch = system("git branch")
+    echo branch
+  else
+    let opt = join(a:000)
+    let git_branch = "git branch "
+    let log = system(git_branch.opt)
+    echo log
+  endif
 endfunction
 
 function GitLog(...)
