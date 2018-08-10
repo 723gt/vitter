@@ -5,12 +5,14 @@ command -nargs=* Gd call GitDiff(<f-args>)
 
 let s:Y = 89
 lockvar s:Y
+let s:EMPTY_ARG = [""]
+lockvar s:EMPTY_ARG
 
 function GitCheckout(branch) 
-  let git = "git checkout "
-  let this_file = expand("%:t")
-  let log = system(git.a:branch)
-  if (a:branch == this_file )
+  let l:git = "git checkout "
+  let l:this_file = expand("%:t")
+  let log = system(l:git.a:branch)
+  if (a:branch == l:this_file )
     echo "This file checkouted by git"
     echo "So I want to close once (Y/n)"
     let y = getchar() 
@@ -20,38 +22,36 @@ function GitCheckout(branch)
 endfunction
 
 function GitBranchs(...)
-  if (a:0 == 0)
-    let branch = system("git branch")
-    echo branch
+  let l:git = "git branch "
+  if (a:0 >= 1)
+    call s:CommandRun(l:git, a:000) 
   else
-    let opt = join(a:000)
-    let git_branch = "git branch "
-    let log = system(git_branch.opt)
-    echo log
+    call s:CommandRun(l:git, s:EMPTY_ARG)
   endif
 endfunction
 
 function GitLog(...)
+ let l:git = "git log "
   if(a:0 >= 1)
-    let ops = join(a:000)
-    let git = "git log "
-    let log = system(git.ops)
+    call s:CommandRun(l:git, a:000)
   else
-    let log = system("git log")
+    call s:CommandRun(l:git, s:EMPTY_ARG)
   endif
-  echo log
 endfunction
  
 function GitDiff(...)
-  let git = "git diff "
-  if (a:0 == 1)
-    let log = system(git.a:1)
-  elseif (a:0 >= 2)
-      let ops = join(a:000)
-    let log = system(git.ops)
+  let l:git = "git diff "
+  if (a:0 >= 1)
+    call s:CommandRun(l:git,a:000)
   else 
-    let log = system(git)
+    call s:CommandRun(l:git, s:EMPTY_ARG)
   end
+endfunction
+
+" args: basecmd, ops
+function s:CommandRun(base, ops)
+  let join_ops = join(a:ops) 
+  let log = system(a:base." ".join_ops)
   echo log
 endfunction
 
