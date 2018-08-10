@@ -3,7 +3,7 @@ this vitter is vim plugin
 Control git from  within vim  
 in production ...  
 
-#use  
+# use  
 ## git branch  
 `:Gb <options>`  
 
