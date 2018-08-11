@@ -16,6 +16,9 @@ in production ...
 ## git diff 
 `:Gd <options>`  
 
+## git rebase  
+`:Gr <options>`  
+
 
 
 # install  

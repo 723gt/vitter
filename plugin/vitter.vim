@@ -2,6 +2,7 @@ command -nargs=* Gc call GitCheckout(<f-args>)
 command -nargs=* Gb call GitBranchs(<f-args>)
 command -nargs=* Gl call GitLog(<f-args>)
 command -nargs=* Gd call GitDiff(<f-args>)
+command -nargs=* Gr call GitRebase(<f-args>)
 
 let s:Y = 89
 lockvar s:Y
@@ -42,10 +43,19 @@ endfunction
 function GitDiff(...)
   let l:git = "git diff "
   if (a:0 >= 1)
-    call s:CommandRun(l:git,a:000)
+    call s:CommandRun(l:git, a:000)
   else 
     call s:CommandRun(l:git, s:EMPTY_ARG)
   end
+endfunction
+
+function GitRebase(...)
+  let l:git = "git rebase "
+  if (a:0 >= 1)
+    call s:CommandRun(l:git, a:000)
+  else
+    call s:CommandRun(l:git, s:EMPTY_ARG)
+  endif
 endfunction
 
 " args: basecmd, ops
