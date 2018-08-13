@@ -7,6 +7,9 @@ in production ...
 ## git branch  
 `:Gb <options>`  
 
+this file checkout command's
+`:Gcf `
+
 ## git checkout  
 `:Gc <options>`  
 

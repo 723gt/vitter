@@ -3,6 +3,7 @@ command -nargs=* Gb call GitBranchs(<f-args>)
 command -nargs=* Gl call GitLog(<f-args>)
 command -nargs=* Gd call GitDiff(<f-args>)
 command -nargs=* Gr call GitRebase(<f-args>)
+command Gcf call GitCheckoutThisFIle()
 
 let s:Y = 89
 lockvar s:Y
@@ -14,12 +15,16 @@ function GitCheckout(branch)
   let l:this_file = expand("%:t")
   let log = system(l:git.a:branch)
   if (a:branch == l:this_file )
-    echo "This file checkouted by git"
-    echo "So I want to close once (Y/n)"
-    let y = getchar() 
-    call s:CloseCheack(y)
+    call s:CloseMsg()
   endif
   echo log
+endfunction
+
+function GitCheckoutThisFIle()
+  let l:git = "git checkout "
+  let l:this_file = expand("%:p")
+  call s:CommandRun(l:git.l:this_file, s:EMPTY_ARG)
+  call s:CloseMsg()
 endfunction
 
 function GitBranchs(...)
@@ -69,4 +74,11 @@ function s:CloseCheack(y)
   if (a:y == s:Y)
     q!
   endif
+endfunction
+
+function s:CloseMsg()
+  echo "This file checkouted by git"
+  echo "So I want to close once (Y/n)"
+  let y = getchar() 
+  call s:CloseCheack(y)
 endfunction
