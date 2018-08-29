@@ -3,7 +3,7 @@ this vitter is vim plugin
 Control git from  within vim  
 in production ...  
 
-# use  
+# Commands
 ## git branch  
 `:Gb <options>`  
 
@@ -22,7 +22,19 @@ this file checkout command's
 ## git rebase  
 `:Gr <options>`  
 
+# other functoin  
+## Display now branch on status line in vim   
+if your vim is status line non actives  
+edit your .vimrc like this at first  
+```
+set laststatus=2  
+set statusline+=%=  
+```
 
+next add this line in vimrc  
+```
+set statusline+=%{g:this_branch}   
+```  
 
 # install  
 .vimrc add  
