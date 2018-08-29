@@ -18,6 +18,7 @@ function GitCheckout(branch)
     call s:CloseMsg()
   endif
   echo log
+  call s:SetBranchName()
 endfunction
 
 function GitCheckoutThisFIle()
@@ -82,3 +83,22 @@ function s:CloseMsg()
   let y = getchar() 
   call s:CloseCheack(y)
 endfunction
+
+function s:GetThisBranch()
+  let l:branch = system("git symbolic-ref --short HEAD")
+  if (strlen(l:branch) == 0)
+    return "non git"
+  endif
+  let l:branch_chop = strpart(l:branch, 0, strlen(l:branch)-1)
+  return l:branch_chop
+endfunction
+
+function s:SetBranchName()
+  let g:this_branch = s:GetThisBranch()
+endfunction
+
+"vim start call
+if has('vim_starting')
+  call s:SetBranchName()
+endif
+
