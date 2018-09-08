@@ -40,5 +40,10 @@ set statusline+=%{g:this_branch}
 ```  
 
 # install  
+if use `NeoBundle`  
 .vimrc add  
 `NeoBundle "723gt/vitter"`
+
+or dein.vim use  
+`call dein#add('723gt/vitter')`   
+
