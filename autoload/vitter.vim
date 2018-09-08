@@ -13,7 +13,7 @@ function vitter#GitCheckout(branch)
     call s:CloseMsg()
   endif
   echo log
-  call s:SetBranchName()
+  call vitter#SetBranchName()
 endfunction
 
 function vitter#GitCheckoutThisFIle()
