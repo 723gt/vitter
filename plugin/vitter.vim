@@ -3,12 +3,15 @@ command -nargs=* Gb call GitBranchs(<f-args>)
 command -nargs=* Gl call GitLog(<f-args>)
 command -nargs=* Gd call GitDiff(<f-args>)
 command -nargs=* Gr call GitRebase(<f-args>)
+command -nargs=* Gf call GitFetch(<f-args>)
 command Gcf call GitCheckoutThisFIle()
 
 let s:Y = 89
 lockvar s:Y
 let s:EMPTY_ARG = [""]
 lockvar s:EMPTY_ARG
+let s:NOT_GIT = "fatal: not a git repository"
+lockvar s:NOT_GIT
 
 function GitCheckout(branch) 
   let l:git = "git checkout "
@@ -64,6 +67,15 @@ function GitRebase(...)
   endif
 endfunction
 
+function GitFetch(...)
+  let l:git = "git fetch "
+  if (a:0 >= 1 )
+    call s:CommandRun(l:git, a:000)
+  else
+    call s:CommandRun(l:git, s:EMPTY_ARG)
+  endif
+endfunction
+
 " args: basecmd, ops
 function s:CommandRun(base, ops)
   let join_ops = join(a:ops) 
@@ -86,7 +98,7 @@ endfunction
 
 function s:GetThisBranch()
   let l:branch = system("git symbolic-ref --short HEAD")
-  if (strlen(l:branch) == 0)
+  if (strlen(l:branch) == 0 || match(s:NOT_GIT, l:branch))
     return "non git"
   endif
   let l:branch_chop = strpart(l:branch, 0, strlen(l:branch)-1)

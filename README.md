@@ -22,6 +22,9 @@ this file checkout command's
 ## git rebase  
 `:Gr <options>`  
 
+## git fetch   
+`:Gf <options>`  
+
 # other functoin  
 ## Display now branch on status line in vim   
 if your vim is status line non actives  
