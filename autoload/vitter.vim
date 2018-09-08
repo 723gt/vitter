@@ -5,7 +5,7 @@ lockvar s:EMPTY_ARG
 let s:NOT_GIT = "fatal: not a git repository"
 lockvar s:NOT_GIT
 
-function Vitter#GitCheckout(branch) 
+function vitter#GitCheckout(branch) 
   let l:git = "git checkout "
   let l:this_file = expand("%:t")
   let log = system(l:git.a:branch)
@@ -16,14 +16,14 @@ function Vitter#GitCheckout(branch)
   call s:SetBranchName()
 endfunction
 
-function Vitter#GitCheckoutThisFIle()
+function vitter#GitCheckoutThisFIle()
   let l:git = "git checkout "
   let l:this_file = expand("%:p")
   call s:CommandRun(l:git.l:this_file, s:EMPTY_ARG)
   call s:CloseMsg()
 endfunction
 
-function Vitter#GitBranchs(...)
+function vitter#GitBranchs(...)
   let l:git = "git branch "
   if (a:0 >= 1)
     call s:CommandRun(l:git, a:000) 
@@ -32,7 +32,7 @@ function Vitter#GitBranchs(...)
   endif
 endfunction
 
-function Vitter#GitLog(...)
+function vitter#GitLog(...)
  let l:git = "git log "
   if(a:0 >= 1)
     call s:CommandRun(l:git, a:000)
@@ -41,7 +41,7 @@ function Vitter#GitLog(...)
   endif
 endfunction
  
-function Vitter#GitDiff(...)
+function vitter#GitDiff(...)
   let l:git = "git diff "
   if (a:0 >= 1)
     call s:CommandRun(l:git, a:000)
@@ -50,7 +50,7 @@ function Vitter#GitDiff(...)
   end
 endfunction
 
-function Vitter#GitRebase(...)
+function vitter#GitRebase(...)
   let l:git = "git rebase "
   if (a:0 >= 1)
     call s:CommandRun(l:git, a:000)
@@ -59,7 +59,7 @@ function Vitter#GitRebase(...)
   endif
 endfunction
 
-function Vitter#GitFetch(...)
+function vitter#GitFetch(...)
   let l:git = "git fetch "
   if (a:0 >= 1 )
     call s:CommandRun(l:git, a:000)

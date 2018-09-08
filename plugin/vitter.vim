@@ -1,7 +1,25 @@
-command -nargs=* Gc call Vitter#GitCheckout(<f-args>)
-command -nargs=* Gb call Vitter#GitBranchs(<f-args>)
-command -nargs=* Gl call Vitter#GitLog(<f-args>)
-command -nargs=* Gd call Vitter#GitDiff(<f-args>)
-command -nargs=* Gr call Vitter#GitRebase(<f-args>)
-command -nargs=* Gf call Vitter#GitFetch(<f-args>)
-command Gcf call Vitter#GitCheckoutThisFIle()
+"=============================================================================
+" File: vitter.vim
+" Author: 723gt
+" Created: 2018-09-08
+"=============================================================================
+
+scriptencoding utf-8
+
+if exists('g:loaded_vitter')
+  finish
+endif
+let g:loaded_vitter = 1
+    
+" vim script
+    
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+command -nargs=* Gc call vitter#GitCheckout(<f-args>)
+command -nargs=* Gb call vitter#GitBranchs(<f-args>)
+command -nargs=* Gl call vitter#GitLog(<f-args>)
+command -nargs=* Gd call vitter#GitDiff(<f-args>)
+command -nargs=* Gr call vitter#GitRebase(<f-args>)
+command -nargs=* Gf call vitter#GitFetch(<f-args>)
+command Gcf call vitter#GitCheckoutThisFIle()
