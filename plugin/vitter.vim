@@ -11,6 +11,11 @@ if exists('g:loaded_vitter')
 endif
 let g:loaded_vitter = 1
 
+"vim start call
+if has('vim_starting')
+  call vitter#SetBranchName()
+endif
+
 command -nargs=* Gc call vitter#GitCheckout(<f-args>)
 command -nargs=* Gb call vitter#GitBranchs(<f-args>)
 command -nargs=* Gl call vitter#GitLog(<f-args>)

@@ -97,12 +97,8 @@ function s:GetThisBranch()
   return l:branch_chop
 endfunction
 
-function s:SetBranchName()
+function vitter#SetBranchName()
   let g:this_branch = s:GetThisBranch()
 endfunction
 
-"vim start call
-if has('vim_starting')
-  call s:SetBranchName()
-endif
 
