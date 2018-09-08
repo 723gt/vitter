@@ -98,7 +98,7 @@ endfunction
 
 function s:GetThisBranch()
   let l:branch = system("git symbolic-ref --short HEAD")
-  if (strlen(l:branch) == 0 || match(s:NOT_GIT, l:branch))
+  if (strlen(l:branch) == 0 || match(s:NOT_GIT, l:branch) == 0)
     return "non git"
   endif
   let l:branch_chop = strpart(l:branch, 0, strlen(l:branch)-1)
