@@ -10,11 +10,6 @@ if exists('g:loaded_vitter')
   finish
 endif
 let g:loaded_vitter = 1
-    
-" vim script
-    
-let &cpo = s:save_cpo
-unlet s:save_cpo
 
 command -nargs=* Gc call vitter#GitCheckout(<f-args>)
 command -nargs=* Gb call vitter#GitBranchs(<f-args>)
