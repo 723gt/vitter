@@ -16,6 +16,7 @@ if has('vim_starting')
   call vitter#SetBranchName()
 endif
 
+set statusline+=%{g:this_branch}
 command -nargs=* Gc call vitter#GitCheckout(<f-args>)
 command -nargs=* Gb call vitter#GitBranchs(<f-args>)
 command -nargs=* Gl call vitter#GitLog(<f-args>)
