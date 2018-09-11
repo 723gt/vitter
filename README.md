@@ -34,11 +34,6 @@ set laststatus=2
 set statusline+=%=  
 ```
 
-next add this line in vimrc  
-```
-set statusline+=%{g:this_branch}   
-```  
-
 # install  
 if use `NeoBundle`  
 .vimrc add  
