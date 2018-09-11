@@ -100,5 +100,3 @@ endfunction
 function vitter#SetBranchName()
   let g:this_branch = s:GetThisBranch()
 endfunction
-
-
