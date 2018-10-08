@@ -68,6 +68,15 @@ function vitter#GitFetch(...)
   endif
 endfunction
 
+function vitter#GitGrep(...)
+  let l:git = "git grep "
+  if(a:0 >= 1)
+    call s:CommandRun(l:git, a:000)
+  else
+    echo "ARGMENT ERROR"
+  endif
+endfunction
+
 " args: basecmd, ops
 function s:CommandRun(base, ops)
   let join_ops = join(a:ops) 

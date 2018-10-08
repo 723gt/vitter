@@ -25,6 +25,9 @@ this file checkout command's
 ## git fetch   
 `:Gf <options>`  
 
+## git grep 
+` :GG <option> <word> `
+
 # other functoin  
 ## Display now branch on status line in vim   
 if your vim is status line non actives  
